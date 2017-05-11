@@ -1,0 +1,103 @@
+{% extends 'contact/base.html' %}
+{% load staticfiles %}
+{% block body %}
+<!--
+    <div ng-app="myModule" ng-controller="myController">
+        <p>Input something in the input box:</p>
+        {% verbatim %}
+        <p>Name : <input type="text" ng-model="name"></p>
+        <h1>Hello {{msg2}}</h1>
+        <div ng-repeat="con in contacts">
+            <h1>{{ con.firstName }}</h1>
+
+        </div>
+        {% endverbatim %}
+        </div>
+
+
+-->
+
+
+{% verbatim %}
+
+    <div ng-app="myModule" ng-controller="myController" class="container">
+    <div ng-repeat="con in contacts">
+        <h3>{{ msg1 }}</h3>
+    </div>
+
+
+    <h2>&nbsp;&nbsp;My All Contacts</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="container">
+                <h2>Contact List</h2>
+
+                    <table class="table table-responsive">
+
+                        <thead>
+
+                                <th>Name( Sorted )</th>
+                                <th>Phone Number</th>
+
+                            </tr>
+                        </thead>
+
+
+                       <tbody>
+<!--
+                            {% for contact in all_contacts %}
+                                    <span>
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                                    <td><a href="{% url 'contact:detail' contact.id %}">{{ contact.firstName }} {{ contact.lastName }}</a></td>
+                                            <td>{{ contact.phoneNumber }}</td>
+                                        </tr>
+                                     </span>
+                            {% endfor %}
+
+-->
+
+
+                        <tbody  >
+                            <tr ng-repeat="contact in contacts | orderBy:'firstName'">
+
+                                    <td><a href="http://127.0.0.1:8000/contact/{{ contact.id }}">{{ contact.firstName }} {{ contact.lastName }}</a></td>
+                                    <td>{{ contact.phoneNumber }}</td>
+
+                                </tr>
+                         </tbody>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endverbatim %}
+
+        <script>
+
+    var myApp = angular.module('myModule', []);
+	myApp.controller('myController', function($scope, $http){
+
+	        $scope.msg5 = "Click To See Details";
+
+        $http.get('http://127.0.0.1:8000/rest/contacts/') //reading the student.json file
+
+            .success (function(data){
+                $scope.contacts = data; // binding the data to the $scope variable
+                $scope.msg2 = "Work Before Well";
+					})
+				.error(function(data, status) {
+  						console.error('failure loading the student record', status, data);
+  						$scope.contacts = { }; //return blank record if something goes wrong
+				});
+
+
+	});
+
+    </script>
+
+{% endblock %}

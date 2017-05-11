@@ -1,0 +1,53 @@
+{% extends 'contact/base.html' %}
+{% block body %}
+
+    <div class="container">
+
+    <h2>Add A New Contact</h2>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="container-fluid">
+                <h2>Contact Info : </h2>
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-7">
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+
+                                        <form class="form-horizontal" action="{% url 'contact:index' %}" method="post" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            {% include 'contact/update-form.html' %}
+                                            <div class="form-group">
+                                                <div class=" col-sm-12">
+<!--
+                                                    <label class="control-label col-sm-3">First Name : </label>
+                                                    <input class="col-sm-6" type="text" value="{{ object.firstName }}"><br><br>
+                                                    <label class="control-label col-sm-3">Last Name : </label>
+                                                    <input class="col-sm-6" type="text" value="{{ object.lastName }}"><br><br>
+                                                    <label class="control-label col-sm-3">Email : </label>
+                                                    <input class="col-sm-6" type="text" value="{{ object.email }}"><br><br>
+                                                    <label class="control-label col-sm-3">Phone Number: </label>
+                                                    <input class="col-sm-6" type="text" value="{{ object.phoneNumber }}"><br><br>
+                                                    <label class="control-label col-sm-3">Address : </label>
+                                                    <input class="col-sm-6" type="text" value="{{ object.address }}"><br><br>
+-->
+                                                    <button type="submit" class="col-sm-3 col-sm-offset-4 btn btn-success">Update Contact</button>
+                                                </div>
+                                            </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

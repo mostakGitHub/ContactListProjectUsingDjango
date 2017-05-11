@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home{% endblock %}</title>
+    {% load staticfiles %}
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Satisfy">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'contact/style.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <script src="{% static 'contact/Script.js' %}"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse">
+            <div class="container">
+
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'contact:index' %}"> MyContactList</a>
+                </div>
+
+            <div class="collapse navbar-collapse" id="topNavBar">
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="{% url 'contact:index'%}">
+                        <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>&nbsp;All Contact
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <a href="{% url 'contact:contact-add' %}">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Contact
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="/rest/contacts/">
+                            <span class="glyphicon glyphicon-book" aria-hidden="true"></span>&nbsp;REST view
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </nav>
+
+        {% block body %}
+        {% endblock %}
+
+
+</body>
+
+</html>
