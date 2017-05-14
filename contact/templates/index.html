@@ -21,9 +21,7 @@
 {% verbatim %}
 
     <div ng-app="myModule" ng-controller="myController" class="container">
-    <div ng-repeat="con in contacts">
-        <h3>{{ msg1 }}</h3>
-    </div>
+
 
 
     <h2>&nbsp;&nbsp;My All Contacts</h2>
@@ -36,7 +34,7 @@
                     <table class="table table-responsive">
 
                         <thead>
-
+                            <tr>
                                 <th>Name( Sorted )</th>
                                 <th>Phone Number</th>
 
@@ -44,8 +42,8 @@
                         </thead>
 
 
-                       <tbody>
-<!--
+ <!--                      <tbody>
+
                             {% for contact in all_contacts %}
                                     <span>
                                         <tr>
@@ -55,11 +53,11 @@
                                         </tr>
                                      </span>
                             {% endfor %}
-
+                        </tbody>
 -->
 
 
-                        <tbody  >
+                        <tbody >
                             <tr ng-repeat="contact in contacts | orderBy:'firstName'">
 
                                     <td><a href="http://127.0.0.1:8000/contact/{{ contact.id }}">{{ contact.firstName }} {{ contact.lastName }}</a></td>
@@ -69,7 +67,6 @@
                          </tbody>
 
 
-                        </tbody>
                     </table>
                 </div>
             </div>
@@ -77,27 +74,6 @@
     </div>
 {% endverbatim %}
 
-        <script>
 
-    var myApp = angular.module('myModule', []);
-	myApp.controller('myController', function($scope, $http){
-
-	        $scope.msg5 = "Click To See Details";
-
-        $http.get('http://127.0.0.1:8000/rest/contacts/') //reading the student.json file
-
-            .success (function(data){
-                $scope.contacts = data; // binding the data to the $scope variable
-                $scope.msg2 = "Work Before Well";
-					})
-				.error(function(data, status) {
-  						console.error('failure loading the student record', status, data);
-  						$scope.contacts = { }; //return blank record if something goes wrong
-				});
-
-
-	});
-
-    </script>
 
 {% endblock %}
